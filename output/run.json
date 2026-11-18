@@ -1,0 +1,79 @@
+{
+  "balances": {
+    "asOf": "2026-10-05T20:00:00-04:00",
+    "usdtInTransit": "1500.00",
+    "bsProviderAvailable": "12120.95",
+    "bsPaidOutNet": "129505.55",
+    "bsPaidOutGross": "132605.55",
+    "bsReversed": "3100.00",
+    "bsPendingNotFinal": "3900.00",
+    "pendingPayouts": [
+      {
+        "payoutId": "P018",
+        "amountBs": "3900.00"
+      }
+    ],
+    "trialBalance": [
+      {
+        "currency": "BS",
+        "debits": "277332.05",
+        "credits": "277332.05"
+      },
+      {
+        "currency": "USDT",
+        "debits": "30500.00",
+        "credits": "30500.00"
+      }
+    ]
+  },
+  "breaks": [
+    {
+      "code": "B1_DEPOSIT_UNFUNDED",
+      "severity": "high",
+      "ref": "deposit:0x12a750139ca2e4c14287bb6ed9ece9ee75b556a911f19f91c2f0d59ef40e7597",
+      "reason": "1500.00 USDT deposited at 2026-10-05T17:40:00-04:00 has no funding webhook 140 min later (SLA 10 min); funds sit unconverted"
+    },
+    {
+      "code": "B11_NEGATIVE_AVAILABLE",
+      "severity": "high",
+      "ref": "window:2026-10-05T16:26:00-04:00..2026-10-05T17:10:00-04:00",
+      "reason": "Bs available was negative from 2026-10-05T16:26:00-04:00 to 2026-10-05T17:10:00-04:00 (min -2480.55 Bs): pay-outs completed against funds not yet credited"
+    },
+    {
+      "code": "B4_SPREAD",
+      "severity": "high",
+      "ref": "funding_webhook:fw_003",
+      "reason": "spread 1.20% vs reference 9.8348 exceeds the 0.5% cap (applied rate 9.7168); under-credited vs policy"
+    },
+    {
+      "code": "B10_CONFIRM_STUCK",
+      "severity": "medium",
+      "ref": "payout:P018",
+      "reason": "confirmed 49 min before cutoff with no final state (SLA 15 min); 3900.00 Bs in limbo"
+    },
+    {
+      "code": "B5_FUNDING_LATE",
+      "severity": "medium",
+      "ref": "funding_webhook:fw_004",
+      "reason": "funding webhook arrived 145 min after the deposit (SLA 10 min); the applied rate drifted with the delay"
+    },
+    {
+      "code": "B12_REVIEW",
+      "severity": "info",
+      "ref": "payout:P005",
+      "reason": "pay-out of 3100.00 Bs was COMPLETED and later REVERSED; funds returned — confirm with the provider why"
+    },
+    {
+      "code": "B12_REVIEW",
+      "severity": "info",
+      "ref": "payout:P009",
+      "reason": "PREVIEW (2750.25 Bs) was never confirmed; expires with no financial effect"
+    },
+    {
+      "code": "B7_DUP_IDENTICAL",
+      "severity": "info",
+      "ref": "payout_event:pe_0029",
+      "reason": "byte-identical duplicate delivery in the feed; deduplicated"
+    }
+  ]
+}
